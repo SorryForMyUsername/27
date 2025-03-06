@@ -12,7 +12,8 @@ namespace _27
         {
             List<Point> points = InputPointList(4);
             OutputList(points);
-            Console.WriteLine($"\nБлижайшая точка: {ClosestPointNumber(points)}");
+            Console.WriteLine($"\nБлижайшая точка: {ClosestPointNumber(points)}\n" +
+                $"Всего точек: {Point.Count}");
 
             Console.ReadKey(true);
         }

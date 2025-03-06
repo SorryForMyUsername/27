@@ -18,13 +18,49 @@ namespace _27
         int y;
 
         /// <summary>
+        /// Поле Координатная четверть
+        /// </summary>
+        int coordinateQuadrant;
+
+        /// <summary>
+        /// Статическое поле Количество точек
+        /// </summary>
+        static int count;
+
+        /// <summary>
         /// Свойство Координата X
         /// </summary>
-        public int X { get => x; set => x = value; }
+        public int X
+        {
+            get { return x; }
+            set
+            {
+                x = value;
+                DefineCoordinateQuadrant();
+            }
+        }
         /// <summary>
         /// Свойство Координата Y
         /// </summary>
-        public int Y { get => y; set => y = value; }
+        public int Y
+        {
+            get { return y; }
+            set
+            {
+                y = value;
+                DefineCoordinateQuadrant();
+            }
+        }
+        
+        /// <summary>
+        /// Свойство Координатная четверть
+        /// </summary>
+        public int CoordinateQuadrant { get => coordinateQuadrant; set => coordinateQuadrant = value; }
+
+        /// <summary>
+        /// Свойство Количество точек
+        /// </summary>
+        public static int Count { get => count; set => count = value; }
 
         /// <summary>
         /// Конструктор по умолчанию
@@ -33,6 +69,7 @@ namespace _27
         {
             X = 0;
             Y = 0;
+            count++;
         }
 
         /// <summary>
@@ -44,11 +81,19 @@ namespace _27
         {
             this.X = x;
             this.Y = y;
+            count++;
         }
 
         public double Length()
         {
             return Math.Sqrt(Math.Pow(X, 2) + Math.Pow(Y, 2));
+        }
+
+        private void DefineCoordinateQuadrant()
+        {
+            CoordinateQuadrant = x >= 0
+                ? y >= 0 ? 1 : 4
+                : y >= 0 ? 2 : 3;
         }
 
         /// <summary>
@@ -57,7 +102,7 @@ namespace _27
         /// <returns>Значения координат в виде строки</returns>
         public override string ToString()
         {
-            return $"x = {X, -5}y = {Y, -5}";
+            return $"x = {X, -5}y = {Y, -5}(Координатная четверть: {coordinateQuadrant})";
         }
     }
 }
